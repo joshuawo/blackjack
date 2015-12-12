@@ -1,18 +1,40 @@
 body {
   background-image: url(../img/felt.jpg);
   background-size: cover;
+  color: white;
+  font-family: 'Roboto', sans-serif;
 }
 
-.hand {
-  color: white;
+.app {
+  width: 100%;
+  text-align: center;
+}
+
+.player-hand-container, .dealer-hand-container {
+  display: inline-block;
+  position: absolute;
+}
+
+.dealer-hand-container {
+  top: 10%;
+}
+
+.player-hand-container {
+  top: 40%;
+}
+
+.actions-container{
+  display: inline-block;
+  position: absolute;
+  top: 75%;
 }
 
 .card {
   float: left;
   border: solid 1px black;
-  width: 100px;
+  width: 120px;
   border-radius: 5px;
-  height: 140px;
+  height: 167px;
   margin-right: 20px;
 }
 
@@ -28,4 +50,10 @@ body {
 img {
 	width: 100%;
 	height: auto;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
