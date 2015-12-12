@@ -63,5 +63,9 @@ class window.App extends Backbone.Model
       @get('playerHand').setStatus('Push!')
       console.log @get('playerHand').status
 
+    if @get('deck').length < @get('deck').decksInShoe * 52/4
+      @get('deck').reset()
+      @get('deck').addCardsToDeck @get('deck').decksInShoe
+
 
     
