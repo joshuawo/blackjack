@@ -15,7 +15,7 @@ class window.Deck extends Backbone.Collection
           suit: Math.floor(card / 13)
       numDecks -= 1
 
-  dealPlayer: -> new Hand [@pop(), @pop()], @
+  dealPlayer: -> new Hand [], @, false, 1000
 
-  dealDealer: -> new Hand [@pop().flip(), @pop()], @, true
+  dealDealer: -> new Hand [], @, true, 1000000
 
