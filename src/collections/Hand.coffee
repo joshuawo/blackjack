@@ -8,7 +8,7 @@ class window.Hand extends Backbone.Collection
 
   bankBalance : 0
 
-  currentBet : 0
+  currentWager : 0
 
   hit: ->
     @add(@deck.pop())
