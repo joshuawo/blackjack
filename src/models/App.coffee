@@ -12,23 +12,14 @@ class window.App extends Backbone.Model
 
     @get('playerHand').on 'showdown', =>
       playerVal = @showDown 'playerHand'
-
-      # reveal dealer's hole card and his hand
       @get('dealerHand').at(0).flip()
       dealerVal = @showDown 'dealerHand'
-
+      
       while dealerVal < 18
         @get('dealerHand').hit()
         dealerVal = @showDown 'dealerHand'
 
-      if dealerVal > 21 or playerVal > dealerVal
-        window.alert('You Win!')
-      else if playerVal < dealerVal
-        window.alert('You Lose')
-      else
-        window.alert('Push')
-
-      # @alertOutcome playerValue, dealerValue
+      @alertOutcome playerVal, dealerVal
 
   showDown: (hand) ->
     handHiChk = (@get hand).scores()[1]
@@ -36,13 +27,13 @@ class window.App extends Backbone.Model
       return handHiChk
     (@get hand).scores()[0]
 
-  # alertOutcome: (playerValue, dealerValue) ->
-  #   if playerValue > dealerValue
-  #     window.alert('You Win!')
-  #   else if playerValue < dealerValue
-  #     window.alert('You Lose')
-  #   else
-  #     window.alert('Push')
+  alertOutcome: (playerVal, dealerVal) ->
+    if dealerVal > 21 or playerVal > dealerVal
+      window.alert('You Win!')
+    else if playerVal < dealerVal
+      window.alert('You Lose')
+    else
+      window.alert('Push')
 
 
-    # console.log (@get 'playerHand').scores()[0]
+    
