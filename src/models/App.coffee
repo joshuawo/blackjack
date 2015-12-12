@@ -6,15 +6,6 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
 
-    @naturalChk()
-
-    @get('playerHand').on 'bustCheck', =>
-      if (@get 'playerHand').scores()[0] > 21
-        @get('playerHand').setStatus('Busted!')
-
-    @get('playerHand').on 'showdown', =>
-      @showdown false
-
     @get('playerHand').on 'newGame', =>
       @get('playerHand').setStatus('')
       @get('playerHand').reset()
@@ -26,6 +17,14 @@ class window.App extends Backbone.Model
       @get('dealerHand').hit()
 
       @naturalChk()
+
+    @get('playerHand').on 'bustCheck', =>
+      if (@get 'playerHand').scores()[0] > 21
+        @get('playerHand').setStatus('Busted!')
+        @trigger 'betTime', @
+
+    @get('playerHand').on 'showdown', =>
+      @showdown false
 
   naturalChk: ->
     if (@get 'playerHand').scores()[1] == 21
@@ -46,26 +45,23 @@ class window.App extends Backbone.Model
 
   bestHand: (hand) ->
     handHiChk = (@get hand).scores()[1]
-    if handHiChk and handHiChk < 21
+    if handHiChk <= 21
       return handHiChk
     (@get hand).scores()[0]
 
   alertOutcome: (playerVal, dealerVal) ->
-    console.log @get('deck').length
-
     if dealerVal > 21 or playerVal > dealerVal
       @get('playerHand').setStatus('You Won!')
-      console.log @get('playerHand').status 
     else if playerVal < dealerVal
       @get('playerHand').setStatus('The Dealer Won!')
-      console.log @get('playerHand').status
     else
       @get('playerHand').setStatus('Push!')
-      console.log @get('playerHand').status
 
     if @get('deck').length < @get('deck').decksInShoe * 52/4
       @get('deck').reset()
       @get('deck').addCardsToDeck @get('deck').decksInShoe
+
+    @trigger 'betTime', @
 
 
     
