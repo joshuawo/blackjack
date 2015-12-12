@@ -5,7 +5,8 @@ class window.AppView extends Backbone.View
   template: _.template '
     <div class="dealer-hand-container hidden"></div>
     <div class="player-hand-container hidden"></div>
-    <div class="actions-container"><button class="hit-button hidden">Hit</button> <button class="stand-button hidden">Stand</button> <button class="play-button">Play Again</button></div>
+    <div class="actions-container"><button class="hit-button hidden">Hit</button> <button class="stand-button hidden">Stand</button> <button class="play-button">Play</button></div>
+    <div class="wager-container"></div>
     <div class="footer"></div>
   '
 
@@ -29,5 +30,6 @@ class window.AppView extends Backbone.View
     @$el.html @template()
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
+    @$('.wager-container').html new WagerView(collection: @model.get 'playerHand').el
     @$('.footer').html new StatusView(collection: @model.get 'playerHand').el
 
