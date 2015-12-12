@@ -1,10 +1,14 @@
 class window.Hand extends Backbone.Collection
   model: Card
 
-  initialize: (array, @deck, @isDealer) ->
-    @status = ""
+  initialize: (array, @deck, @isDealer, bankBalance) ->
+    @bankBalance += bankBalance
 
   status: ""
+
+  bankBalance : 0
+
+  currentBet : 0
 
   hit: ->
     @add(@deck.pop())
