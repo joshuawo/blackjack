@@ -1,7 +1,7 @@
 class window.StatusView extends Backbone.View
   className: 'footer'
 
-  template: _.template '<span><%= status %></span>'
+  template: _.template '<div class="balance">Player\'s Balance: $<%= bankBalance %></div><span><%= status %></span>'
 
   initialize: -> 
     @collection.on 'add remove newStatus', => 
