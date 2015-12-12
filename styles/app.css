@@ -13,6 +13,7 @@ body {
 .player-hand-container, .dealer-hand-container {
   display: inline-block;
   position: absolute;
+  left: 46%;
 }
 
 .dealer-hand-container {
@@ -56,4 +57,5 @@ img {
     position: fixed;
     bottom: 0;
     width: 100%;
+    font-size: 150%;
 }
